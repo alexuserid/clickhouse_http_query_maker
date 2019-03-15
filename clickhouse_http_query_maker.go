@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// This small app creates valid query for clickhouse http-reguest like:
-// 'http://clickhousebd:8123?query=${TRANSFORMED_QUERY}'
+// This app creates valid query for clickhouse http-reguest like:
+// 'http://clickhouse-host:8123?query=${TRANSFORMED_QUERY}'
 func main() {
 	query := s
 
