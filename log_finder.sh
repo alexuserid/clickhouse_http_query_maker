@@ -14,6 +14,13 @@ then
 fi
 
 pattern=$1
+
+# define colors for readability
+blue='\033[1;34m'
+purple='\033[1;35m'
+grey='\033[;30m'
+nc='\033[0m'
+
 containers=$( docker ps --format "{{.Image}} {{.ID}}" ) || { echo "failed docker ps --format {{.ID}}"; exit 1; } # get docker container ids as array
 
 i=0
@@ -21,15 +28,15 @@ for item in $containers;
 do
         if [ $(($i % 2)) -eq 0 ] # even elements are image names, odd elements are ids 
         then
-                echo "Image: $item"
+                printf "${blue}Image:${nc} $item\n"
                 i=$((++i))
                 continue
         fi
 
-        echo "Container: $item" # prints container id
+        printf "${purple}Container:${nc} $item\n" # prints container id
 
         echo "Match in log:"
-        docker logs $item 2>&1 | grep --color -E "$pattern" || { echo "no matches"; } # 
+        docker logs $item 2>&1 | grep --color -E "$pattern" || { printf "${grey}no matches${nc}\n"; } # 
         echo "" # for new line
         i=$((++i))
 done
