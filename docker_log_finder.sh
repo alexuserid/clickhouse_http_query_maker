@@ -22,7 +22,7 @@ grey='\033[0;30m'
 green='\033[0;32m'
 nc='\033[0m'
 
-containers=$( docker ps --format "{{.Image}} {{.ID}}" ) || { echo "failed docker ps --format {{.ID}}"; exit 1; } # get docker container ids as array
+containers=$( docker ps --format "{{.Image}} {{.ID}}" ) || { echo 'failed docker ps --format "{{.Image}} {{.ID}}"'; exit 1; } # get docker container ids as array
 
 i=0
 for item in $containers;
